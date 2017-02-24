@@ -22,10 +22,11 @@
         function test_save()
         {
             // Arrange
-            $name = "Lisa";
+            $stylist_name = "Lisa";
             $id = NULL;
-            $new_stylist = new Stylist($name, $id);
+            $new_stylist = new Stylist($stylist_name, $id);
             $new_stylist->save();
+
 
             // Act
             $result = Stylist::getAll();
@@ -37,17 +38,18 @@
         function test_getAll()
         {
             // Arrange
-            $name = "Lisa";
+            $stylist_name = "Lisa";
             $id = NULL;
-            $new_stylist = new Stylist($name, $id);
+            $new_stylist = new Stylist($stylist_name, $id);
             $new_stylist->save();
 
-            $name2 = "Bruce";
-            $new_stylist2 = new Stylist($name2, $id);
+            $stylist_name2 = "Bruce";
+            $new_stylist2 = new Stylist($stylist_name2, $id);
             $new_stylist2->save();
 
             // Act
             $result = Stylist::getAll();
+
 
             // Assert
             $this->assertEquals([$new_stylist, $new_stylist2], $result);
@@ -56,13 +58,13 @@
         function test_delete()
         {
             // Arrange
-            $name = "Lisa";
+            $stylist_name = "Lisa";
             $id = NULL;
-            $new_stylist = new Stylist($name, $id);
+            $new_stylist = new Stylist($stylist_name, $id);
             $new_stylist->save();
 
-            $name2 = "Bruce";
-            $new_stylist2 = new Stylist($name2, $id);
+            $stylist_name2 = "Bruce";
+            $new_stylist2 = new Stylist($stylist_name2, $id);
             $new_stylist2->save();
 
             // Act

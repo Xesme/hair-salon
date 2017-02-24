@@ -1,24 +1,24 @@
 <?php
 
 class Stylist {
-    private $name;
+    private $stylist_name;
     private $id;
 
-    function __construct($name, $id = NULL)
+    function __construct($stylist_name, $id = NULL)
     {
-        $this->name = $name;
+        $this->stylist_name = $stylist_name;
         $this->id = $id;
     }
 
     // getters and setters
     function getName()
     {
-        return $this->name;
+        return $this->stylist_name;
     }
 
-    function setName($new_name)
+    function setName($new_stylist_name)
     {
-        $this->name = $new_name;
+        $this->stylist_name = $new_stylist_name;
     }
 
     function getId()
@@ -30,7 +30,7 @@ class Stylist {
 
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO stylists (name) VALUES ('{$this->name}');");
+        $GLOBALS['DB']->exec("INSERT INTO stylists (stylist_name) VALUES ('{$this->getName()}');");
         $this->id = $GLOBALS['DB']->lastInsertId();
 
     }
@@ -48,9 +48,9 @@ class Stylist {
         $stylists = array();
         foreach($returned_stylists as $stylist)
         {
-            $name = $stylist['name'];
+            $stylist_name = $stylist['stylist_name'];
             $id = $stylist['id'];
-            $new_stylist = new Stylist($name, $id);
+            $new_stylist = new Stylist($stylist_name, $id);
             array_push($stylists, $new_stylist);
         }
         return $stylists;
