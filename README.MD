@@ -22,6 +22,7 @@ This web application will simulate a management database for a hair salon, and a
 |--------|-----|------|
 |User can add a new stylist to the database| "Lisa" | "Lisa"|
 |User can add a new client to the database | "Marge Simpleson" | "Marge Simpleson"|
+|User can add numerous clients to the database | "Marge Simpleson", "Mary Monroe"| "Marge Simpleson", "Mary Monroe"|
 |User can view all stylist | clicks button | "Lisa, Beth, Bruce"|
 |User can view all clients for that stylist | clicks Lisa | "Marge Simpleson, Lady Gigi"|
 |User can delete all information for each stylist | click delete button | " "|
