@@ -100,5 +100,38 @@
             // Assert
             $this->assertEquals([], $result);
         }
+
+        function test_find()
+        {
+            // Arrange
+            $stylist_name = "Bruce";
+            $new_stylist = new Stylist($stylist_name, $id);
+            $new_stylist->save();
+
+            $name = "Marge Simpleson";
+            $id2 = NULL;
+            $stylist_id = $new_stylist->getId();
+            $new_client = new Client($name, $id2, $stylist_id);
+            $new_client->save();
+
+            $name3 = "Mary Monroe";
+            $id3 = NULL;
+            $stylist_id3 = $new_stylist->getId();
+            $new_client3 = new Client($name3, $id3, $stylist_id3);
+            $new_client3->save();
+
+            $name4 = "Patsy Dime";
+            $id4 = NULL;
+            $stylist_id4 = $new_stylist->getId();
+            $new_client4 = new Client($name4, $id4, $stylist_id4);
+            $new_client4->save();
+
+            // Act
+            $client_search = $new_client4->getId();
+            $result = $new_client4->find($client_search);
+
+            // Assert
+            $this->assertEquals([$new_client4], $result);
+        }
     }
  ?>
