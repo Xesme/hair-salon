@@ -52,6 +52,27 @@
             // Assert
             $this->assertEquals([$new_client, $new_client2], $result);
         }
+
+        function test_delete()
+        {
+            // Arrange
+            $name = "Marge Simpleson";
+            $id = NULL;
+            $new_client = new Client($name, $id);
+            $new_client->save();
+
+            $name2 = "Mary Monroe";
+            $new_client2 = new Client($name2, $id);
+            $new_client2->save();
+
+            // Act
+            Client::deleteAll();
+            $result = Client::getAll();
+
+
+            // Assert
+            $this->assertEquals([], $result);
+        }
     }
 
  ?>
