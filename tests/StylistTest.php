@@ -5,7 +5,7 @@
     */
 
     require_once "src/Stylist.php";
-    require_once "src/Stylist.php";
+    require_once "src/Client.php";
 
     $server = 'mysql:host=localhost:8889;dbname=hair_salon_test';
     $username = 'root';
@@ -17,6 +17,7 @@
         protected function tearDown()
         {
             Stylist::deleteAll();
+            Client::deleteAll();
         }
 
         function test_save()
@@ -49,8 +50,7 @@
 
             // Act
             $result = Stylist::getAll();
-
-
+        
             // Assert
             $this->assertEquals([$new_stylist, $new_stylist2], $result);
         }
