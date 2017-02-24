@@ -50,12 +50,12 @@
 
             // Act
             $result = Stylist::getAll();
-        
+
             // Assert
             $this->assertEquals([$new_stylist, $new_stylist2], $result);
         }
 
-        function test_delete()
+        function test_deleteAll()
         {
             // Arrange
             $stylist_name = "Lisa";
