@@ -35,6 +35,11 @@ class Client {
     }
 
     // static functions below
+    static function deleteAll()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM clients;");
+    }
+
 
     static function getAll()
     {

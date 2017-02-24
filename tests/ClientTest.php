@@ -14,6 +14,10 @@
 
     class ClientTest extends PHPUnit_Framework_TestCase
     {
+        protected function tearDown()
+        {
+            Client::deleteAll();
+        }
         
         function test_save()
         {
