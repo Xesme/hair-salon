@@ -18,7 +18,7 @@
         {
             Client::deleteAll();
         }
-        
+
         function test_save()
         {
             // Arrange
@@ -26,7 +26,7 @@
             $id = NULL;
             $new_client = new Client($name, $id);
             $new_client->save();
-            var_dump($new_client);
+            // var_dump($new_client);
 
             // Act
             $result = Client::getAll();
