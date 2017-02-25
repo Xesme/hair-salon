@@ -30,7 +30,7 @@ This web application will simulate a management database for a hair salon, and a
 
 ## Known Bugs
 
-No known bugs.
+No bugs currently but, this application is unfinished.
 
 ## Support and contact details
 
