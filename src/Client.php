@@ -42,6 +42,11 @@ class Client
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
+    function delete()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM clients WHERE id = {$this->getId()};");
+    }
+
     // static functions
     static function deleteAll()
     {
