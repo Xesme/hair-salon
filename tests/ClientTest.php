@@ -30,21 +30,17 @@
             $new_stylist = new Stylist($stylist_name, $id);
             $new_stylist->save();
 
-
             $name = "Marge Simpleson";
             $id2 = NULL;
             $stylist_id = $new_stylist->getId();
             $new_client = new Client($name, $id2, $stylist_id);
             $new_client->save();
 
-
             // Act
             $result = Client::getAll();
 
-
             // Assert
             $this->assertEquals($new_client, $result[0]);
-
         }
 
         function test_getAll()
@@ -54,7 +50,6 @@
             $id = NULL;
             $new_stylist = new Stylist($stylist_name, $id);
             $new_stylist->save();
-
 
             $name = "Marge Simpleson";
             $id3 = NULL;
@@ -67,10 +62,8 @@
             $new_client2 = new Client($name2, $id2, $stylist_id);
             $new_client2->save();
 
-
             // Act
             $result = Client::getAll();
-
 
             // Assert
             $this->assertEquals([$new_client, $new_client2], $result);
@@ -84,18 +77,15 @@
             $new_stylist = new Stylist($stylist_name, $id);
             $new_stylist->save();
 
-
             $name = "Marge Simpleson";
             $id2 = NULL;
             $stylist_id = $new_stylist->getId();
             $new_client = new Client($name, $id2, $stylist_id);
             $new_client->save();
 
-
             // Act
             Client::deleteAll();
             $result = Client::getAll();
-
 
             // Assert
             $this->assertEquals([], $result);
@@ -112,7 +102,6 @@
             $stylist_name2 = "Beth";
             $new_stylist2 = new Stylist($stylist_name, $id);
             $new_stylist2->save();
-
 
             $name = "Marge Simpleson";
             $id = NULL;
@@ -133,7 +122,6 @@
             // Act
             $stylist_id_search = $new_client3->getStylistId();
             $result = $new_client3->search($stylist_id_search);
-            // var_dump($client_search);
 
             // Assert
             $this->assertEquals([$new_client3], $result);
@@ -157,9 +145,7 @@
             $new_client_test = new Client($new_name, $id2, $stylist_id);
 
             // Act
-
             $result = Client::getAll();
-
 
             // Assert
             $this->assertEquals($new_client, $result[0]);
@@ -172,7 +158,6 @@
             $id = NULL;
             $new_stylist = new Stylist($stylist_name, $id);
             $new_stylist->save();
-
 
             $name = "Marge Simpleson";
             $id2 = NULL;
