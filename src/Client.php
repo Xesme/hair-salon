@@ -68,9 +68,9 @@ class Client
         return $clients;
     }
 
-    static function find($id)
+    static function search($stylist_id)
     {
-        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients WHERE id = $id;");
+        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients WHERE stylist_id = $stylist_id ;");
         $clients = array();
         foreach($returned_clients as $client)
         {
@@ -82,6 +82,7 @@ class Client
         }
         return $clients;
     }
+
 
 }
  ?>

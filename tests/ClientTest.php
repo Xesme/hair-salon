@@ -8,7 +8,7 @@
     require_once "src/Client.php";
     require_once "src/Stylist.php";
 
-    $server = 'mysql:host=localhost:8889;dbname=hair_salon_test';
+    $server = 'mysql:host=localhost:8889;dbname=hair-salon_test';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -101,37 +101,42 @@
             $this->assertEquals([], $result);
         }
 
-        function test_find()
+        function test_search()
         {
             // Arrange
             $stylist_name = "Bruce";
+            $id = NULL;
             $new_stylist = new Stylist($stylist_name, $id);
             $new_stylist->save();
 
+            $stylist_name2 = "Beth";
+            $new_stylist2 = new Stylist($stylist_name, $id);
+            $new_stylist2->save();
+
+
             $name = "Marge Simpleson";
-            $id2 = NULL;
+            $id = NULL;
             $stylist_id = $new_stylist->getId();
-            $new_client = new Client($name, $id2, $stylist_id);
+            $new_client = new Client($name, $id, $stylist_id);
             $new_client->save();
 
-            $name3 = "Mary Monroe";
-            $id3 = NULL;
-            $stylist_id3 = $new_stylist->getId();
-            $new_client3 = new Client($name3, $id3, $stylist_id3);
+            $name2 = "Mary Monroe";
+            $stylist_id2 = $new_stylist->getId();
+            $new_client2 = new Client($name2, $id, $stylist_id2);
+            $new_client2->save();
+
+            $name3 = "Patsy Dime";
+            $stylist_id3 = $new_stylist2->getId();
+            $new_client3 = new Client($name3, $id, $stylist_id3);
             $new_client3->save();
 
-            $name4 = "Patsy Dime";
-            $id4 = NULL;
-            $stylist_id4 = $new_stylist->getId();
-            $new_client4 = new Client($name4, $id4, $stylist_id4);
-            $new_client4->save();
-
             // Act
-            $client_search = $new_client4->getId();
-            $result = $new_client4->find($client_search);
+            $stylist_id_search = $new_client3->getStylistId();
+            $result = $new_client3->search($stylist_id_search);
+            // var_dump($client_search);
 
             // Assert
-            $this->assertEquals([$new_client4], $result);
+            $this->assertEquals([$new_client3], $result);
         }
 
         function test_update()
