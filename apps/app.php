@@ -21,7 +21,7 @@
         return $app['twig']->render('index.html.twig', array('stylists' => $stylists));
     });
 
-    $app->post("/add-stylist", function() use($app){
+    $app->post("/add/stylist", function() use($app){
         $id = NULL;
         $new_stylist = new Stylist($_POST['stylist_name'], $id);
         $new_stylist->save();
@@ -29,11 +29,22 @@
         return $app['twig']->render('index.html.twig', array('stylists' => $stylists));
     });
 
-    $app->get("/stylist/{{id}}", function($id) use($app){
-        $found_client = Client::find($id);
+    $app->post('/add/client', function() use($app){
+        $id = NULL;
+        $new_client = new Client($_POST['name'], $id, $_POST['stylist_id']);
+        $new_client->save();
         $stylists = Stylist::getAll();
-        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylists, 'clients' => $found_client);
+        $clients = Client::getAll();
+
+        return $app['twig']->render('index.html.twig', array('stylists' => $stylists, 'clients' => $clients));
     });
+
+    // $app->get("/stylist/{id}", function() use($app){
+    //     return "to do";
+    //     // $found_client = Client::find($id);
+    //     // $stylists = Stylist::getStylistId($id);
+    //     // return $app['twig']->render('stylist.html.twig', array('stylists' => $stylists, 'clients' => $found_client));
+    // });
 
     return $app;
 
