@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title></title>
-    </head>
-    <body>
+{% extends 'base.html.twig' %}
+
+{% block page %}
+<div class="row">
+<div class='col-md-6'>
         <form action="/add/client" method="post">
-            <h2>Add a new stylist:</h2>
+            <h2>Add a new client:</h2>
             <br>
             <label for='name'>Name:</label>
             <input type="text" name='name'>
@@ -20,21 +18,6 @@
         </select>
             <button type="submit">Add a new client</button>
         </form>
-
-        {% for client in clients %}
-        <table>
-            <th>Name</th>
-            <th>Stylist</th>
-
-            <tbody>
-                <tr>
-                    <td>{{ client.getName }}</td>
-                    <td>{{ client.getStylistId }}</td>
-                </tr>
-            </tbody>
-        </table>
-        {% endfor %}
-
         <form action="/add/stylist" method="post">
             <h2>Add a new stylist:</h2>
             <br>
@@ -42,13 +25,29 @@
             <input type="text" name="stylist_name">
             <button type="submit">Add</button>
         </form>
+        <!-- list of stylists -->
         {% if stylists is not empty %}
-        <h2>Browser by stylist:</h2>
+        <h2>Browse by stylist:</h2>
         {% for stylist in stylists %}
         <ul>
             <li><a href="/stylist/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
         </ul>
         {% endfor %}
         {% endif %}
-    </body>
-</html>
+    </div>
+    <div class='col-md-6'>
+        <!-- list of clients -->
+        <h2>Client list:</h2>
+        <table>
+            <th>Name</th>
+            <tbody>
+                {% for client in clients %}
+                <tr>
+                    <td>{{ client.getName }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

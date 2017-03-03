@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block page %}
+<div class="row">
+<div class='col-md-6'>
+        <h2>Update Stylist</h2>
+        <form action="/patch/stylist/" method="post">
+            <input name="_method" value="patch" hidden>
+            <div class="form-group">
+                <label for="new_stylist_name">New name:</label>
+                <input type="text" name="new_name">
+                <button type="submit">Update</button>
+            </div>
+        </form>
+    </div>
+    <div class='col-md-6'>
+        <h1>{{ stylist }}'s client list</h1>
+        <ul>
+            {% for client in clients %}
+                <li>{{ client.getName }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}
