@@ -5,11 +5,50 @@
         <title></title>
     </head>
     <body>
-        <h1>Currentl stylists:</h1>
-        {% for stlist_name in stylists %}
+        <form action="/add/client" method="post">
+            <h2>Add a new stylist:</h2>
+            <br>
+            <label for='name'>Name:</label>
+            <input type="text" name='name'>
+            <select name="stylist_id">
+                <option></option>
+            {% if stylists is not empty%}
+                {% for stylist in stylists %}
+                <option value='{{ stylist.getId }}'>{{ stylist.getName }}</option>
+                {% endfor %}
+            {% endif %}
+        </select>
+            <button type="submit">Add a new client</button>
+        </form>
+
+        {% for client in clients %}
+        <table>
+            <th>Name</th>
+            <th>Stylist</th>
+
+            <tbody>
+                <tr>
+                    <td>{{ client.getName }}</td>
+                    <td>{{ client.getStylistId }}</td>
+                </tr>
+            </tbody>
+        </table>
+        {% endfor %}
+
+        <form action="/add/stylist" method="post">
+            <h2>Add a new stylist:</h2>
+            <br>
+            <label for="stylist_name">Name:</label>
+            <input type="text" name="stylist_name">
+            <button type="submit">Add</button>
+        </form>
+        {% if stylists is not empty %}
+        <h2>Browser by stylist:</h2>
+        {% for stylist in stylists %}
         <ul>
-            <li>{{stylist.getName}}</li>
+            <li><a href="/stylist/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
         </ul>
         {% endfor %}
+        {% endif %}
     </body>
 </html>
