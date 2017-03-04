@@ -17,12 +17,12 @@
         <h1>{{ stylist }}'s client list</h1>
         <ul>
             {% for client in clients %}
-                <li>{{ client.getName }}</li>
+                <li><a href="/client/{{ client.getId }}">{{ client.getName }}</a></li>
             {% endfor %}
         </ul>
     </div>
 </div>
-<h3>Delete stylist and client list</h3>
+<h3>Delete stylist and their client list</h3>
 <form action="/delete/stylist" method="post">
     <input name="_method" value="delete" hidden>
     <button type="submit">Delete</button>
