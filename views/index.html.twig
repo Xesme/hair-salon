@@ -8,7 +8,7 @@
             <h2>Add a new stylist:</h2>
             <br>
             <label for="stylist_name">Name:</label>
-            <input type="text" name="stylist_name">
+            <input type="text" name="stylist_name" required>
             <button type="submit">Add</button>
         </form>
         <!-- list of stylists -->
@@ -39,8 +39,8 @@
             <h2>Add a new client:</h2>
             <br>
             <label for='name'>Name:</label>
-            <input type="text" name='name'>
-            <select name="stylist_id">
+            <input type="text" name='name' required>
+            <select name="stylist_id" required>
                 <option></option>
                 {% if stylists is not empty%}
                 {% for stylist in stylists %}
