@@ -34,6 +34,11 @@ class Client
         return $this->stylist_id;
     }
 
+    function setStylistId($new_stylist_id)
+    {
+        $this->stylist_id = $new_stylist_id;
+    }
+
     // functions
 
     function save()
@@ -47,6 +52,13 @@ class Client
         $GLOBALS['DB']->exec("DELETE FROM clients WHERE id = {$this->getId()};");
     }
 
+    function update($name)
+    {
+        $this->setName(addslashes($name));
+
+        $GLOBALS['DB']->exec("UPDATE clients SET name = '{$this->getName()}' WHERE id = {$this->getId()};");
+    }
+
     // static functions
     static function deleteAll()
     {
@@ -55,7 +67,7 @@ class Client
 
     static function getAll()
     {
-        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients;");
+        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients ORDER BY name;");
         $clients = array();
         foreach($returned_clients as $client)
         {
@@ -70,7 +82,7 @@ class Client
 
     static function search($stylist_id)
     {
-        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients WHERE stylist_id = $stylist_id ;");
+        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients WHERE stylist_id = $stylist_id;");
         $clients = array();
         foreach($returned_clients as $client)
         {
@@ -83,6 +95,20 @@ class Client
         return $clients;
     }
 
+    static function getClientById($client_id)
+    {
+        $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients WHERE id = {$client_id};");
+        $clients = array();
+        foreach($returned_clients as $client)
+        {
+            $name = $client['name'];
+            $id = $client['id'];
+            $stylist_id = $client['stylist_id'];
+            $new_client = new Client($name, $id, $stylist_id);
+            array_push($clients, $new_client);
+        }
+        return $clients;
+    }
 
 }
  ?>

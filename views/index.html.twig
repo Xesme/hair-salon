@@ -3,6 +3,15 @@
 {% block page %}
 <div class="row">
 <div class='col-md-6'>
+        <!-- form to add stylist -->
+        <form action="/add/stylist" method="post">
+            <h2>Add a new stylist:</h2>
+            <br>
+            <label for="stylist_name">Name:</label>
+            <input type="text" name="stylist_name">
+            <button type="submit">Add</button>
+        </form>
+        <!-- form to add client -->
         <form action="/add/client" method="post">
             <h2>Add a new client:</h2>
             <br>
@@ -10,20 +19,13 @@
             <input type="text" name='name'>
             <select name="stylist_id">
                 <option></option>
-            {% if stylists is not empty%}
+                {% if stylists is not empty%}
                 {% for stylist in stylists %}
                 <option value='{{ stylist.getId }}'>{{ stylist.getName }}</option>
                 {% endfor %}
-            {% endif %}
-        </select>
+                {% endif %}
+            </select>
             <button type="submit">Add a new client</button>
-        </form>
-        <form action="/add/stylist" method="post">
-            <h2>Add a new stylist:</h2>
-            <br>
-            <label for="stylist_name">Name:</label>
-            <input type="text" name="stylist_name">
-            <button type="submit">Add</button>
         </form>
         <!-- list of stylists -->
         {% if stylists is not empty %}
@@ -43,7 +45,7 @@
             <tbody>
                 {% for client in clients %}
                 <tr>
-                    <td>{{ client.getName }}</td>
+                    <td><a href="/client/{{ client.getId }}">{{ client.getName }}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

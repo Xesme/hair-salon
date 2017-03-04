@@ -4,7 +4,7 @@
     require_once __DIR__."/../src/Client.php";
     require_once __DIR__."/../src/Stylist.php";
 
-    $server = 'mysql:host=localhost:8889;dbname=hair-salon';
+    $server = 'mysql:host=localhost:8889;dbname=hair_salon';
     $username = 'root';
     $password = 'root';
     $DB = new PDO($server, $username, $password);
@@ -18,7 +18,15 @@
 
     $app->get("/", function() use($app){
         $stylists = Stylist::getAll();
-        return $app['twig']->render('index.html.twig', array('stylists' => $stylists));
+        $clients = Client::getAll();
+        return $app['twig']->render('index.html.twig', array('stylists' => $stylists, 'clients' => $clients));
+    });
+
+    // CRUD for stylist
+    $app->get("/stylist/{id}", function($id) use($app){
+        $found_client = Client::search($id);
+        $stylist = Stylist::getStylistId($id);
+        return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients' => $found_client));
     });
 
     $app->post("/add/stylist", function() use($app){
@@ -26,7 +34,16 @@
         $new_stylist = new Stylist($_POST['stylist_name'], $id);
         $new_stylist->save();
         $stylists = Stylist::getAll();
+
         return $app['twig']->render('index.html.twig', array('stylists' => $stylists));
+    });
+
+    // CRUD for client
+    $app->get("/client/{id}", function($id) use($app){
+        $client = Client::getClientById($id);
+        $stylist = Stylist::getStylistId($id);
+        $list_stylists = Stylist::getAll();
+        return $app['twig']->render('client.html.twig', array( 'listStylists' => $list_stylists, 'stylist' => $stylist, 'client' => $client));
     });
 
     $app->post('/add/client', function() use($app){
@@ -39,12 +56,14 @@
         return $app['twig']->render('index.html.twig', array('stylists' => $stylists, 'clients' => $clients));
     });
 
-    // $app->get("/stylist/{id}", function() use($app){
-    //     return "to do";
-    //     // $found_client = Client::find($id);
-    //     // $stylists = Stylist::getStylistId($id);
-    //     // return $app['twig']->render('stylist.html.twig', array('stylists' => $stylists, 'clients' => $found_client));
-    // });
+    $app->patch('/patch/client/{id}', function($id) use($app){
+        $client = Client::getClientById($id);
+        $client[0]->update($_POST['new_name']);
+
+        return $app['twig']->render('client.html.twig', array('client' => $client));
+    });
+
+    // end of CRUD
 
     return $app;
 
