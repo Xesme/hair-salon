@@ -42,8 +42,8 @@
     $app->get("/client/{id}", function($id) use($app){
         $client = Client::getClientById($id);
         $stylist = Stylist::getStylistId($id);
-        $list_stylists = Stylist::getAll();
-        return $app['twig']->render('client.html.twig', array( 'listStylists' => $list_stylists, 'stylist' => $stylist, 'client' => $client));
+        $stylists = Stylist::getAll();
+        return $app['twig']->render('client.html.twig', array( 'stylists' => $stylists, 'stylist' => $stylist, 'client' => $client));
     });
 
     $app->post('/add/client', function() use($app){
@@ -58,9 +58,9 @@
 
     $app->patch('/patch/client/{id}', function($id) use($app){
         $client = Client::getClientById($id);
-        $client[0]->update($_POST['new_name']);
-
-        return $app['twig']->render('client.html.twig', array('client' => $client));
+        $client[0]->update($_POST['new_name'], $_POST['new_stylist_id']);
+        $stylists = Stylist::getAll();
+        return $app['twig']->render('client.html.twig', array('client' => $client, 'stylists' => $stylists));
     });
 
     // end of CRUD

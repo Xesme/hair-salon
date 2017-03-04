@@ -52,11 +52,20 @@ class Client
         $GLOBALS['DB']->exec("DELETE FROM clients WHERE id = {$this->getId()};");
     }
 
-    function update($name)
+    function update($new_name, $new_stylist_id)
     {
-        $this->setName(addslashes($name));
+        if ($new_name === '')
+        {
+            $new_name = $this->getName();
+        }
+        if ($new_stylist_id === '')
+        {
+            $new_stylist_id = $this->getStylistId();
+        }
 
-        $GLOBALS['DB']->exec("UPDATE clients SET name = '{$this->getName()}' WHERE id = {$this->getId()};");
+        $GLOBALS['DB']->exec("UPDATE clients SET name = '{$new_name}', stylist_id = {$new_stylist_id} WHERE id = {$this->getId()};");
+        $this->setName(addslashes($new_name));
+        $this->setStylistId($new_stylist_id);
     }
 
     // static functions

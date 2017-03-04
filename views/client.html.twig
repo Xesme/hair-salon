@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block page%}
-<h1>{{ client[0].getName }}</h1>
+<h1>Client name: {{ client[0].getName }}</h1>
 
 <form action="/patch/client/{{ client[0].getId }}" method="post">
     <input name="_method" value="patch" hidden>
     <label for="new_name">Update name:</label>
-    <input type="text" name="name">
-    <!-- <label>Change Stylist</label>
+    <input type="text" name="new_name">
+    <br>
+    <label>Change Stylist</label>
     <select name="new_stylist_id">
         <option></option>
-        {% if listStylists is not empty%}
-        {% for stylist in listStylists %}
+        {% if stylists is not empty%}
+        {% for stylist in stylists %}
         <option value='{{ stylist.getId }}'>{{ stylist.getName }}</option>
         {% endfor %}
         {% endif %}
-    </select> -->
+    </select>
     <button type="submit">Update</button>
 </form>
 
