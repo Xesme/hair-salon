@@ -35,6 +35,11 @@ class Stylist {
 
     }
 
+    function delete()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
+    }
+
     // static functions below
     static function deleteAll()
     {
