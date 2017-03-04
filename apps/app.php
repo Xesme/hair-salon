@@ -34,12 +34,17 @@
         $new_stylist = new Stylist($_POST['stylist_name'], $id);
         $new_stylist->save();
         $stylists = Stylist::getAll();
+        $clients = Client::getAll();
 
-        return $app['twig']->render('index.html.twig', array('stylists' => $stylists));
+        return $app['twig']->render('index.html.twig', array('stylists' => $stylists,  'clients' => $clients));
     });
 
     $app->patch('patch/stylist/{id}', function($id) use($app){
-        return "to do";
+        $stylist = Stylist::getStylistId($id);
+        $stylist->update($_POST['new_stylist_name']);
+        $stylists = Stylist::getAll();
+        $clients = Client::getAll();
+        return $app['twig']->render('index.html.twig', array('stylists' => $stylists, 'clients' => $clients));
     });
 
     $app->delete('delete/stylist/{id}', function($id) use($app){

@@ -40,6 +40,13 @@ class Stylist {
         $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
     }
 
+    function update($new_stylist_name)
+    {
+    
+        $GLOBALS['DB']->exec("UPDATE stylists SET stylist_name = '{$new_stylist_name}' WHERE id = {$this->getId()};");
+        $this->setName(addslashes($new_stylist_name));
+    }
+
 
     // static functions below
     static function deleteAll()
