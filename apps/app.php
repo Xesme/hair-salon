@@ -22,6 +22,16 @@
         return $app['twig']->render('index.html.twig', array('stylists' => $stylists, 'clients' => $clients));
     });
 
+    $app->get("/delete/all/stylist", function() use($app){
+        $stylists = Stylist::getAll();
+        $clients = Client::getAll();
+        return $app['twig']->render('deleteAll.html.twig', array('stylists' => $stylists, 'clients' => $clients));
+    });
+
+    $app->delete('delete/all/stylist', function() use($app){
+            return "to do";
+    });
+
     // CRUD for stylist
     $app->get("/stylist/{id}", function($id) use($app){
         $found_client = Client::search($id);
@@ -54,11 +64,6 @@
         $clients = Client::getAll();
         return $app['twig']->render('index.html.twig', array('stylists' => $stylists, 'clients' => $clients));
     });
-
-    $app->delete('delete/all/stylist', function() use($app){
-        return "to do also add delete button in html";
-    });
-
 
     // CRUD for client
     $app->get("/client/{id}", function($id) use($app){
