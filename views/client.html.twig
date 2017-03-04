@@ -2,7 +2,8 @@
 
 {% block page%}
 <h1>Client name: {{ client[0].getName }}</h1>
-
+<h2>Current stylist ID: {{client[0].getStylistId }}</h2>
+<h6>if this client is currently without a primary stylist use the form below to assign a new stylist</h6>
 <form action="/patch/client/{{ client[0].getId }}" method="post">
     <input name="_method" value="patch" hidden>
     <label for="new_name">Update name:</label>

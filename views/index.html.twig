@@ -11,22 +11,6 @@
             <input type="text" name="stylist_name">
             <button type="submit">Add</button>
         </form>
-        <!-- form to add client -->
-        <form action="/add/client" method="post">
-            <h2>Add a new client:</h2>
-            <br>
-            <label for='name'>Name:</label>
-            <input type="text" name='name'>
-            <select name="stylist_id">
-                <option></option>
-                {% if stylists is not empty%}
-                {% for stylist in stylists %}
-                <option value='{{ stylist.getId }}'>{{ stylist.getName }}</option>
-                {% endfor %}
-                {% endif %}
-            </select>
-            <button type="submit">Add a new client</button>
-        </form>
         <!-- list of stylists -->
         {% if stylists is not empty %}
         <h2>Browse by stylist:</h2>
@@ -50,6 +34,22 @@
                 {% endfor %}
             </tbody>
         </table>
+        <!-- form to add client -->
+        <form action="/add/client" method="post">
+            <h2>Add a new client:</h2>
+            <br>
+            <label for='name'>Name:</label>
+            <input type="text" name='name'>
+            <select name="stylist_id">
+                <option></option>
+                {% if stylists is not empty%}
+                {% for stylist in stylists %}
+                <option value='{{ stylist.getId }}'>{{ stylist.getName }}</option>
+                {% endfor %}
+                {% endif %}
+            </select>
+            <button type="submit">Add a new client</button>
+        </form>
     </div>
 </div>
 {% endblock %}
