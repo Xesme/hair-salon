@@ -40,6 +40,7 @@ class Stylist {
         $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
     }
 
+
     // static functions below
     static function deleteAll()
     {
@@ -63,11 +64,14 @@ class Stylist {
 
     static function getStylistId($stylist_id)
     {
+
         $returned_stylist = $GLOBALS['DB']->query("SELECT * FROM stylists WHERE id = '{$stylist_id}'");
         $stylist = ' ';
         foreach ($returned_stylist as $stylist)
         {
-            $stylist = $stylist['stylist_name'];
+            $stylist_name = $stylist['stylist_name'];
+            $id = $stylist['id'];
+            $stylist = New Stylist($stylist_name, $id);
         }
         return $stylist;
     }
