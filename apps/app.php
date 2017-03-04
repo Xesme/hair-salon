@@ -38,6 +38,23 @@
         return $app['twig']->render('index.html.twig', array('stylists' => $stylists));
     });
 
+    $app->patch('patch/stylist/{id}', function($id) use($app){
+        return "to do";
+    });
+
+    $app->delete('delete/stylist/{id}', function($id) use($app){
+        $stylist = Stylist::getStylistId($id);
+        $stylist->delete();
+        $stylists = Stylist::getAll();
+        $clients = Client::getAll();
+        return $app['twig']->render('index.html.twig', array('stylists' => $stylists, 'clients' => $clients));
+    });
+
+    $app->delete('delete/all/stylist', function() use($app){
+        return "to do also add delete button in html";
+    });
+
+
     // CRUD for client
     $app->get("/client/{id}", function($id) use($app){
         $client = Client::getClientById($id);
@@ -62,6 +79,11 @@
         $stylists = Stylist::getAll();
         return $app['twig']->render('client.html.twig', array('client' => $client, 'stylists' => $stylists));
     });
+
+    $app->delete('/delete/client/{id}', function($id) use($app){
+        return "to do";
+    });
+
 
     // end of CRUD
 
