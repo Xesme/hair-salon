@@ -69,20 +69,20 @@ This web application that simulates a management database for a hair salon, and 
 * CREATE TABLE stylists (stylist_name VARCHAR (255), id serial PRIMARY KEY);
 * CREATE TABLE clients (name VARCHAR (255), stylist_id BIGINT, id serial PRIMARY KEY);
 * DESCRIBE stylists;
-|--------------|---------------------|------|-----|---------|----------------|
+
 | Field        | Type                | Null | Key | Default | Extra          |
 |--------------|---------------------|------|-----|---------|----------------|
 | stylist_name | varchar(255)        | YES  |     | NULL    |                |
 | id           | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
-|--------------|---------------------|------|-----|---------|----------------|
+
 * DESCRIBE clients;
-|--------------|---------------------|------|-----|---------|----------------|
+
 | Field      | Type                | Null | Key | Default | Extra          |
 |--------------|---------------------|------|-----|---------|----------------|
 | name       | varchar(255)        | YES  |     | NULL    |                |
 | stylist_id | bigint(11)          | YES  |     | NULL    |                |
 | id         | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
-|--------------|---------------------|------|-----|---------|----------------|
+
 * INSERT INTO stylists (stylist_name) VALUES ('{$this->getName()}');
 * DELETE FROM stylists WHERE id = {$this->getId()};
 * UPDATE stylists SET stylist_name = '{$new_stylist_name}' WHERE id = {$this->getId()};
