@@ -118,6 +118,5 @@ class Client
         }
         return $clients;
     }
-
 }
  ?>

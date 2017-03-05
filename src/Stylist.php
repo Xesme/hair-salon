@@ -32,7 +32,6 @@ class Stylist {
     {
         $GLOBALS['DB']->exec("INSERT INTO stylists (stylist_name) VALUES ('{$this->getName()}');");
         $this->id = $GLOBALS['DB']->lastInsertId();
-
     }
 
     function delete()
@@ -42,18 +41,15 @@ class Stylist {
 
     function update($new_stylist_name)
     {
-
         $GLOBALS['DB']->exec("UPDATE stylists SET stylist_name = '{$new_stylist_name}' WHERE id = {$this->getId()};");
         $this->setName(addslashes($new_stylist_name));
     }
-
 
     // static functions below
     static function deleteAll()
     {
         $GLOBALS['DB']->exec("DELETE FROM stylists;");
     }
-
 
     static function getAll()
     {
@@ -71,7 +67,6 @@ class Stylist {
 
     static function getStylistId($stylist_id)
     {
-
         $returned_stylist = $GLOBALS['DB']->query("SELECT * FROM stylists WHERE id = '{$stylist_id}'");
         $stylist = '';
         foreach ($returned_stylist as $stylist)
@@ -82,6 +77,5 @@ class Stylist {
         }
         return $stylist;
     }
-
 }
  ?>

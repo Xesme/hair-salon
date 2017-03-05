@@ -87,7 +87,6 @@
             Stylist::deleteAll();
             $result = Stylist::getAll();
 
-
             // Assert
             $this->assertEquals([], $result);
         }
@@ -108,7 +107,6 @@
             $new_stylist->delete();
             $result = Stylist::getAll();
 
-
             // Assert
             $this->assertEquals([$new_stylist2], $result);
         }
@@ -128,7 +126,6 @@
             // Act
             $new_stylist->getStylistId($id);
             $result = Stylist::getAll();
-
 
             // Assert
             $this->assertEquals($new_stylist, $result[0]);
