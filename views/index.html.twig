@@ -9,7 +9,7 @@
             <br>
             <label for="stylist_name">Name:</label>
             <input type="text" name="stylist_name" required>
-            <button type="submit">Add</button>
+            <button class="btn btn-success" type="submit">Add</button>
         </form>
         <!-- list of stylists -->
         {% if stylists is not empty %}
@@ -49,12 +49,15 @@
                 {% endfor %}
                 {% endif %}
             </select>
-            <button type="submit">Add a new client</button>
+            <button class="btn btn-success" type="submit">Add a new client</button>
         </form>
         <!-- END COLUMN 2 -->
     </div>
     <!-- END ROW  -->
 </div>
+<br>
+<br>
+<br>
 {% block footer %}
 <button class="btn btn-warning" type="button"><a href="/delete/all/">Delete Database</a></button>
 {% endblock%}

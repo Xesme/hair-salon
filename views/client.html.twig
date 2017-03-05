@@ -16,12 +16,13 @@
         {% endfor %}
         {% endif %}
     </select>
-    <button type="submit">Update</button>
+    <button class="btn btn-primary" type="submit">Update</button>
 </form>
-
+<br>
+<br>
 <h3>Delete Client</h3>
 <form action="/delete/client/{{ client[0].getId }}" method="post">
     <input name="_method" value="delete" hidden>
-    <button type="submit">Delete</button>
+    <button class="btn btn-warning" type="submit">Delete</button>
 </form>
 {% endblock %}

@@ -11,7 +11,7 @@
             <div class="form-group">
                 <label for="new_stylist_name">New name:</label>
                 <input type="text" name="new_stylist_name" required>
-                <button type="submit">Update</button>
+                <button class="btn btn-primary" type="submit">Update</button>
             </div>
         </form>
         <!-- END FORM -->
@@ -19,7 +19,7 @@
         <h3>Delete stylist</h3>
         <form action="/delete/stylist/{{ stylist.getId }}" method="post">
             <input name="_method" value="delete" hidden>
-            <button type="submit">Delete</button>
+            <button class="btn btn-warning" type="submit">Delete</button>
         </form>
         <!-- END FORM -->
     </div>
@@ -31,7 +31,7 @@
             <li><a href="/client/{{ client.getId }}">{{ client.getName }}</a></li>
             {% endfor %}
         </ul>
-        <!-- FORM TO ADD NEW CLIENT  WISH LIST-->
+        <!-- FORM TO ADD NEW CLIENT -->
         <form action='/add/stylist/client/{{ stylist.getId }}' method="post">
             <h2>Add a new client:</h2>
             <br>
@@ -40,7 +40,7 @@
             <select name="stylist_id" required>
                 <option value='{{ stylist.getId }}'>{{ stylist.getName }}</option>
             </select>
-            <button type="submit">Add a new client</button>
+            <button class="btn btn-primary" type="submit">Add Client</button>
         </form>
     </div>
     <!-- END ROW  -->
