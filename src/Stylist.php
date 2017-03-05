@@ -42,7 +42,7 @@ class Stylist {
 
     function update($new_stylist_name)
     {
-    
+
         $GLOBALS['DB']->exec("UPDATE stylists SET stylist_name = '{$new_stylist_name}' WHERE id = {$this->getId()};");
         $this->setName(addslashes($new_stylist_name));
     }
@@ -73,7 +73,7 @@ class Stylist {
     {
 
         $returned_stylist = $GLOBALS['DB']->query("SELECT * FROM stylists WHERE id = '{$stylist_id}'");
-        $stylist = ' ';
+        $stylist = '';
         foreach ($returned_stylist as $stylist)
         {
             $stylist_name = $stylist['stylist_name'];
