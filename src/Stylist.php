@@ -67,7 +67,7 @@ class Stylist {
 
     static function getStylistId($stylist_id)
     {
-        $returned_stylist = $GLOBALS['DB']->query("SELECT * FROM stylists WHERE id = '{$stylist_id}'");
+        $returned_stylist = $GLOBALS['DB']->query("SELECT * FROM stylists WHERE id = '{$stylist_id}';");
         $stylist = '';
         foreach ($returned_stylist as $stylist)
         {

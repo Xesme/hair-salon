@@ -58,6 +58,45 @@ This web application that simulates a management database for a hair salon, and 
 |User can edit client name and or stylist | new name: "Amanda Nines" new stylist: "Bruce" click update | new name: "Amanda Nines" new stylist: "Bruce" |
 |User can delete the entire database | click delete all | Database is now empty|
 
+## MySQL Commands Used
+* /Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot
+* CREATE DATABASE hair_salon;
+* USE hair_salon;
+* CREATE TABLE stylists (stylist_name VARCHAR (255), id serial PRIMARY KEY);
+* CREATE TABLE clients (name VARCHAR (255), stylist_id BIGINT, id serial PRIMARY KEY);
+* CREATE DATABASE hair_salon_test;
+* USE hair_salon_test;
+* CREATE TABLE stylists (stylist_name VARCHAR (255), id serial PRIMARY KEY);
+* CREATE TABLE clients (name VARCHAR (255), stylist_id BIGINT, id serial PRIMARY KEY);
+* DESCRIBE stylists;
+|--------------|---------------------|------|-----|---------|----------------|
+| Field        | Type                | Null | Key | Default | Extra          |
+|--------------|---------------------|------|-----|---------|----------------|
+| stylist_name | varchar(255)        | YES  |     | NULL    |                |
+| id           | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
+|--------------|---------------------|------|-----|---------|----------------|
+* DESCRIBE clients;
+|--------------|---------------------|------|-----|---------|----------------|
+| Field      | Type                | Null | Key | Default | Extra          |
+|--------------|---------------------|------|-----|---------|----------------|
+| name       | varchar(255)        | YES  |     | NULL    |                |
+| stylist_id | bigint(11)          | YES  |     | NULL    |                |
+| id         | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
+|--------------|---------------------|------|-----|---------|----------------|
+* INSERT INTO stylists (stylist_name) VALUES ('{$this->getName()}');
+* DELETE FROM stylists WHERE id = {$this->getId()};
+* UPDATE stylists SET stylist_name = '{$new_stylist_name}' WHERE id = {$this->getId()};
+* DELETE FROM stylists;
+* SELECT * FROM stylists;
+* SELECT * FROM stylists WHERE id = '{$stylist_id}';
+* INSERT INTO clients (name, stylist_id) VALUES ('{$this->getName()}', {$this->getStylistId()});
+* DELETE FROM clients WHERE id = {$this->getId()};
+* UPDATE clients SET name = '{$new_name}', stylist_id = {$new_stylist_id} WHERE id = {$this->getId()};
+* DELETE FROM clients;
+* SELECT * FROM clients ORDER BY name;
+* SELECT * FROM clients WHERE stylist_id = $stylist_id;
+* SELECT * FROM clients WHERE id = {$client_id};
+
 ## Known Bugs
 
 There are no known bugs at this time.
