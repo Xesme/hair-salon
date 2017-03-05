@@ -20,7 +20,7 @@
 </form>
 
 <h3>Delete Client</h3>
-<form action="/delete/client/{id}" method="post">
+<form action="/delete/client/{{ client[0].getId }}" method="post">
     <input name="_method" value="delete" hidden>
     <button type="submit">Delete</button>
 </form>

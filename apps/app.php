@@ -91,7 +91,11 @@
     });
 
     $app->delete('/delete/client/{id}', function($id) use($app){
-        return "to do";
+        $client = Client::getClientById($id);
+        $client[0]->delete();
+        $clients = Client::getAll();
+        $stylists = Stylist::getAll();
+        return $app['twig']->render('index.html.twig', array('clients' => $clients, 'stylists' => $stylists));
     });
 
 
