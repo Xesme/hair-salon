@@ -32,14 +32,16 @@
             {% endfor %}
         </ul>
         <!-- FORM TO ADD NEW CLIENT  WISH LIST-->
-        <!-- <form action="/add/client" method="post">
+        <form action='/add/stylist/client/{{ stylist.getId }}' method="post">
             <h2>Add a new client:</h2>
             <br>
             <label for='name'>Name:</label>
             <input type="text" name='name'>
-            <input type="text" name='stylist_id' hidden>
+            <select name="stylist_id" required>
+                <option value='{{ stylist.getId }}'>{{ stylist.getName }}</option>
+            </select>
             <button type="submit">Add a new client</button>
-        </form> -->
+        </form>
     </div>
     <!-- END ROW  -->
 </div>
