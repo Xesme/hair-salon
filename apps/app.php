@@ -23,14 +23,14 @@
         return $app['twig']->render('index.html.twig', array('stylists' => $stylists, 'clients' => $clients));
     });
 
-    $app->get("/delete/all/stylist", function() use($app){
+    $app->get("/delete/all/", function() use($app){
         $stylists = Stylist::getAll();
         $clients = Client::getAll();
 
         return $app['twig']->render('deleteAll.html.twig', array('stylists' => $stylists, 'clients' => $clients));
     });
 
-    $app->delete('delete/all/stylist', function() use($app){
+    $app->delete('/delete/all/stylist', function() use($app){
         Client::deleteAll();
         Stylist::deleteAll();
         return $app['twig']->render('index.html.twig');
