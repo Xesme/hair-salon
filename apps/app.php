@@ -19,7 +19,7 @@
     $app->get("/", function() use($app){
         $stylists = Stylist::getAll();
         $clients = Client::getAll();
-        
+
         return $app['twig']->render('index.html.twig', array('stylists' => $stylists, 'clients' => $clients));
     });
 
@@ -31,7 +31,9 @@
     });
 
     $app->delete('delete/all/stylist', function() use($app){
-            return "to do";
+        Client::deleteAll();
+        Stylist::deleteAll();
+        return $app['twig']->render('index.html.twig');
     });
 
     // CRUD for stylist
